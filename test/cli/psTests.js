@@ -8,8 +8,8 @@ const nvsRootDir = path.resolve(__dirname, '..', '..');
 const testParentDir = path.resolve(__dirname, '..', 'temp');
 const testDir = path.join(testParentDir, 'ps');
 
-const testNodeVersion = '8.5.0';
-const testNpmVersion = '6.4.1';
+const testNodeVersion = '24.19.0';
+const testNpmVersion = '11.17.0';
 
 test.before(t => {
 	require('../fsUtil').createDirectoryIfNotFound(testParentDir);
@@ -50,6 +50,8 @@ test('PowerShell CLI', t => {
 				'NVS_HOME': testDir,
 				'NVS_LINK_TO_SYSTEM': '0',
 				'NVS_DEBUG': '1',
+				'PROCESSOR_ARCHITECTURE': process.env['PROCESSOR_ARCHITECTURE'],
+				'PROCESSOR_ARCHITEW6432': process.env['PROCESSOR_ARCHITEW6432'],
 				'ProgramFiles': process.env['ProgramFiles'],
 			},
 			cwd: nvsRootDir,
